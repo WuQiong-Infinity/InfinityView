@@ -1,0 +1,72 @@
+[
+  {
+    "id": "System.Text.Json",
+    "url": "https://raw.githubusercontent.com/dotnet/dotnet/4099f83977f4d29604a9aeb971fb0a7bc1d5f699/LICENSE.TXT",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Text.Json-LICENSE.txt",
+    "sha256": "ae48df11a335dc1a615f4f938b69cba73bcf4485c4f97af49b38efb0f216353b",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "Microsoft.Bcl.AsyncInterfaces",
+    "url": "https://raw.githubusercontent.com/dotnet/dotnet/4099f83977f4d29604a9aeb971fb0a7bc1d5f699/LICENSE.TXT",
+    "file": "src\\v0.4\\Compatibility\\licenses\\Microsoft.Bcl.AsyncInterfaces-LICENSE.txt",
+    "sha256": "ae48df11a335dc1a615f4f938b69cba73bcf4485c4f97af49b38efb0f216353b",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.Buffers",
+    "url": "https://raw.githubusercontent.com/dotnet/maintenance-packages/6b84308c9ad012f53240d72c1d716d7e42546483/LICENSE",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Buffers-LICENSE.txt",
+    "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.IO.Pipelines",
+    "url": "https://raw.githubusercontent.com/dotnet/dotnet/4099f83977f4d29604a9aeb971fb0a7bc1d5f699/LICENSE.TXT",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.IO.Pipelines-LICENSE.txt",
+    "sha256": "ae48df11a335dc1a615f4f938b69cba73bcf4485c4f97af49b38efb0f216353b",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.Memory",
+    "url": "https://raw.githubusercontent.com/dotnet/maintenance-packages/f62ca0009b038cab4725a720f386623a969d73ad/LICENSE",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Memory-LICENSE.txt",
+    "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.Numerics.Vectors",
+    "url": "https://raw.githubusercontent.com/dotnet/maintenance-packages/6b84308c9ad012f53240d72c1d716d7e42546483/LICENSE",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Numerics.Vectors-LICENSE.txt",
+    "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.Runtime.CompilerServices.Unsafe",
+    "url": "https://raw.githubusercontent.com/dotnet/maintenance-packages/f62ca0009b038cab4725a720f386623a969d73ad/LICENSE",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Runtime.CompilerServices.Unsafe-LICENSE.txt",
+    "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.Text.Encodings.Web",
+    "url": "https://raw.githubusercontent.com/dotnet/dotnet/4099f83977f4d29604a9aeb971fb0a7bc1d5f699/LICENSE.TXT",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Text.Encodings.Web-LICENSE.txt",
+    "sha256": "ae48df11a335dc1a615f4f938b69cba73bcf4485c4f97af49b38efb0f216353b",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.Threading.Tasks.Extensions",
+    "url": "https://raw.githubusercontent.com/dotnet/maintenance-packages/f62ca0009b038cab4725a720f386623a969d73ad/LICENSE",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.Threading.Tasks.Extensions-LICENSE.txt",
+    "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  },
+  {
+    "id": "System.ValueTuple",
+    "url": "https://raw.githubusercontent.com/dotnet/maintenance-packages/84b081710c66cc560b77d4de38cee493c3a38e9d/LICENSE",
+    "file": "src\\v0.4\\Compatibility\\licenses\\System.ValueTuple-LICENSE.txt",
+    "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+    "packageCopyright": "© Microsoft Corporation. All rights reserved."
+  }
+]

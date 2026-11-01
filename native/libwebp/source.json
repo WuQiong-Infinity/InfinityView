@@ -1,0 +1,11 @@
+{
+  "version": "1.6.0",
+  "repository": "https://chromium.googlesource.com/webm/libwebp",
+  "commit": "4fa21912338357f89e4fd51cf2368325b59e9bd9",
+  "archive": "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz",
+  "archiveSha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+  "originalFiles": "src/dec, src/dsp, src/utils, src/demux and dependent headers/Makefile.am from upstream src",
+  "license": "BSD-3-Clause and PATENTS grant",
+  "modifications": "unmodified source; local decoder-only MinGW build script, single shared DLL includes demux for first-frame composition",
+  "commitEvidence": "https://github.com/webmproject/libwebp/commit/4fa21912338357f89e4fd51cf2368325b59e9bd9"
+}

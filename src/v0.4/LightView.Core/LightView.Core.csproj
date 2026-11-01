@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <PackageReference Include="System.Text.Json" Version="10.0.13" />
+    <Compile Include="../Compatibility/CompilerSupport.cs" Link="Compatibility/CompilerSupport.cs" />
+    <Using Include="LightView.Compatibility" />
+  </ItemGroup>
+</Project>

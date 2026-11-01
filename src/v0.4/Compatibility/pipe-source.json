@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/dotnet/runtime",
+  "tag": "v10.0.13",
+  "commit": "6aa72daa24f66c01c3d7b6a32519e9d21396deec",
+  "files": [
+    "src/libraries/System.IO.Pipes/src/System/IO/Pipes/NamedPipeServerStream.Windows.cs",
+    "src/libraries/System.IO.Pipes/src/System/IO/Pipes/NamedPipeClientStream.Windows.cs"
+  ],
+  "license": "MIT",
+  "copyright": ".NET Foundation and Contributors",
+  "use": "OwnerSecurity and HasCurrentOwner implement the existing CurrentUserOnly Owner contract using net48 PipeSecurity; only the small Owner ACL setup and comparison are adapted, not pipe creation or runtime internals.",
+  "changes": "net48 explicit ACL constructor; identity missing fails closed; client Owner rejection before protocol bytes and existing PID/EXE validation retained",
+  "destination": "src/v0.4/LightView.App/Platform/SingleInstanceSession.cs"
+}

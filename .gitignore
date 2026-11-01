@@ -1,0 +1,16 @@
+.dotnet/
+work/
+artifacts/
+**/bin/
+**/obj/
+.vs/
+
+**/UserData/
+**/Operations/
+**/InstallBackups/
+**/.lightview-undo/
+**/build-receipt.json
+*.user
+*.suo
+.env
+.env.*

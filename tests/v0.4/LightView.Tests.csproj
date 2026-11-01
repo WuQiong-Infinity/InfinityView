@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <AssemblyName>LightView.Tests</AssemblyName>
+    <ApplicationManifest>../../src/v0.4/LightView.App/app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ImageComparisonTests.cs" />
+    <ProjectReference Include="../../src/v0.4/LightView.App/LightView.App.csproj" />
+    <Compile Include="../../src/v0.4/Compatibility/CompilerSupport.cs" Link="CompilerSupport.cs" />
+    <Using Include="LightView.Compatibility" />
+    <Content Include="../fixtures/metadata/*" Link="fixtures/metadata/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

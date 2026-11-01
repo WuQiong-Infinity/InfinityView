@@ -1,0 +1,8 @@
+InfinityView icon and logo artwork in this directory is excluded from the
+project's MIT code license.
+
+Copyright (c) 2026 WuQiong-Infinity. All rights reserved.
+
+See ../../LICENSE-BRANDING.md for the complete branding terms, limited
+permissions for the original InfinityView application, and preservation of
+valid historical MIT grants.

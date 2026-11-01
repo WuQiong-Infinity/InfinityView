@@ -1,0 +1,119 @@
+<Window x:Class="LightView.App.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pages="clr-namespace:LightView.App.Views.Settings"
+        Title="设置 - InfinityView" Width="1120" Height="800" MinWidth="1040" MinHeight="640"
+        Background="{DynamicResource WindowBrush}" Foreground="{DynamicResource TextBrush}"
+        Icon="/InfinityView;component/Assets/InfinityView.ico" FontFamily="{StaticResource UiFont}" FontSize="14" WindowStartupLocation="CenterOwner"
+        PreviewMouseUp="OnPreviewMouseUp" PreviewMouseWheel="OnPreviewMouseWheel">
+  <Window.Resources>
+    <Style x:Key="SettingsNavigation" TargetType="TabItem">
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource KeyboardFocus}"/>
+      <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="TabItem">
+        <Border x:Name="Item" Background="Transparent" Padding="12,12" Margin="0,2" CornerRadius="6">
+          <ContentPresenter x:Name="HeaderText" ContentSource="Header" HorizontalAlignment="Left"/>
+        </Border>
+        <ControlTemplate.Triggers>
+          <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Item" Property="Background" Value="{DynamicResource HoverBrush}"/></Trigger>
+          <Trigger Property="IsSelected" Value="True"><Setter TargetName="Item" Property="Background" Value="{DynamicResource SelectedBrush}"/><Setter TargetName="HeaderText" Property="TextElement.Foreground" Value="{DynamicResource AccentBrush}"/></Trigger>
+        </ControlTemplate.Triggers>
+      </ControlTemplate></Setter.Value></Setter>
+    </Style>
+  </Window.Resources>
+  <Grid x:Name="EditorRoot" Background="{DynamicResource WindowBrush}">
+    <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <TabControl x:Name="SettingsTabs" Foreground="{DynamicResource TextBrush}" Background="{DynamicResource WindowBrush}" BorderThickness="0" TabStripPlacement="Left" SelectionChanged="OnTabSelectionChanged">
+      <TabControl.Template><ControlTemplate TargetType="TabControl">
+        <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <Border Background="{DynamicResource ChromeBrush}" Padding="12,24">
+            <StackPanel><TextBlock Text="设置" FontSize="22" FontWeight="SemiBold" Margin="12,0,0,20"/><TabPanel IsItemsHost="True" KeyboardNavigation.TabIndex="0"/></StackPanel>
+          </Border>
+          <Border Grid.Column="1" Padding="24,24,20,16"><ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/></Border>
+        </Grid>
+      </ControlTemplate></TabControl.Template>
+      <TabItem x:Name="AppearanceTab" Header="外观与显示" Style="{StaticResource SettingsNavigation}"><pages:AppearancePage x:Name="AppearanceEditor"/></TabItem>
+      <TabItem x:Name="DetailsContentTab" Header="图片详情" Style="{StaticResource SettingsNavigation}"><pages:DetailsPage x:Name="DetailsEditor"/></TabItem>
+      <TabItem x:Name="ViewingTab" Header="查看与操作" Style="{StaticResource SettingsNavigation}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><StackPanel>
+          <TextBlock Text="查看与操作" Style="{StaticResource PageTitle}"/>
+          <TextBlock Text="更改在应用成功后生效。全屏工具栏浮在画布上方，不挤动图片。" Style="{StaticResource SecondaryText}" Margin="0,0,0,24"/>
+          <StackPanel Orientation="Horizontal" Margin="0,0,0,16"><TextBlock Text="每档缩放倍数" VerticalAlignment="Center" Margin="0,0,16,0"/><TextBox x:Name="ZoomStepBox" Width="80" AutomationProperties.Name="每档缩放倍数"/></StackPanel>
+          <CheckBox x:Name="KeepViewCheck" Content="切图保持缩放与位置" Margin="0,4"/>
+          <TextBlock Text="手动缩放时沿用倍率和相对查看位置；适配模式仍自动适配。" Style="{StaticResource SecondaryText}" Margin="28,0,0,12"/>
+          <CheckBox x:Name="EdgeNavigationCheck" Content="启用左键单击切图" Margin="0,4"/>
+          <WrapPanel Margin="28,8,0,8"><TextBlock Text="切图区域" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="MouseNavigationRegionBox" Width="150" SelectedIndex="0"><ComboBoxItem Content="窗格左右半区"/><ComboBoxItem Content="仅左右边缘"/></ComboBox><TextBlock Text="拖动图片" VerticalAlignment="Center" Margin="20,0,12,0"/><ComboBox x:Name="MousePanButtonBox" Width="130" SelectedIndex="0"><ComboBoxItem Content="按住右键"/><ComboBoxItem Content="按住左键"/></ComboBox></WrapPanel>
+          <TextBlock Text="对比时点击另一窗格先选择焦点，再次单击才切图。右键拖动不会弹出菜单。" Style="{StaticResource SecondaryText}" Margin="28,0,0,12" TextWrapping="Wrap"/>
+          <CheckBox x:Name="FullscreenAutoHideCheck" Content="全屏时自动隐藏工具栏" Margin="0,4"/>
+            <TextBlock Text="停留在屏幕顶边可展开；菜单或键盘操作期间保持显示，拖图时隐藏。" Style="{StaticResource SecondaryText}" Margin="28,0,0,12"/>
+          <CheckBox x:Name="RememberPlacementCheck" Content="记住正常窗口位置和大小" Margin="0,4"/>
+        </StackPanel></ScrollViewer>
+      </TabItem>
+      <TabItem x:Name="ShortcutsTab" Header="快捷键与鼠标" Style="{StaticResource SettingsNavigation}">
+        <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <StackPanel><TextBlock Text="快捷键与鼠标" Style="{StaticResource PageTitle}"/><TextBlock Text="中键、侧键、滚轮可录制；点击区域和拖动按钮在“查看与操作”中设置。输入文字时保留常规键盘行为；Esc取消录制。" Style="{StaticResource SecondaryText}" TextWrapping="Wrap"/></StackPanel>
+          <TextBox x:Name="CommandSearch" Grid.Row="1" Margin="0,16,0,12" TextChanged="OnCommandSearch" ToolTip="搜索操作名称或当前按键" AutomationProperties.Name="搜索操作或按键"/>
+          <DataGrid x:Name="BindingsGrid" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
+                    Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextBrush}" RowBackground="{DynamicResource SurfaceBrush}" AlternatingRowBackground="{DynamicResource ChromeBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{DynamicResource DividerBrush}" HeadersVisibility="Column" RowHeight="40">
+            <DataGrid.Columns>
+              <DataGridCheckBoxColumn ElementStyle="{StaticResource GridCheckBox}" EditingElementStyle="{StaticResource GridCheckBox}" Header="启用" Binding="{Binding Enabled, UpdateSourceTrigger=PropertyChanged}" Width="56"/>
+              <DataGridTextColumn Header="操作" Binding="{Binding Name}" IsReadOnly="True" Width="*" MinWidth="160"/>
+              <DataGridTextColumn Header="按键 / 鼠标动作" Binding="{Binding Gesture, UpdateSourceTrigger=PropertyChanged}" Width="*" MinWidth="150"/>
+            </DataGrid.Columns>
+          </DataGrid>
+          <WrapPanel Grid.Row="3" Margin="0,12,0,0"><Button x:Name="RecordButton" Content="录制输入" Click="OnRecordClick"/><Button Content="清空绑定" Click="OnClearClick"/><Button Content="添加备用绑定" Click="OnAddClick"/><Button x:Name="RestoreShortcutsButton" Content="恢复快捷键默认" Click="OnDefaultsClick"/></WrapPanel>
+        </Grid>
+      </TabItem>
+      <TabItem x:Name="TargetsTab" Header="整理与恢复" Style="{StaticResource SettingsNavigation}">
+        <ScrollViewer x:Name="OrganizeScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <StackPanel>
+            <TextBlock Text="整理与恢复" Style="{StaticResource PageTitle}"/>
+            <TextBlock Text="复制和移动分别在“快捷键与鼠标”中绑定。改名和排序保留绑定；空路径不会使用替代目录。" Style="{StaticResource SecondaryText}" Margin="0,0,0,12"/>
+            <WrapPanel Margin="0,0,0,12"><TextBlock Text="遇到同名文件" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="ConflictPolicyBox" Width="240" SelectedIndex="0"><ComboBoxItem Content="自动改名，保留双方（默认）"/><ComboBoxItem Content="跳过"/><ComboBoxItem Content="每次询问"/></ComboBox></WrapPanel>
+            <CheckBox x:Name="UndoJumpBackCheck" Content="撤销移动后跳回相关目录图片" Margin="0,0,0,12"/>
+          </StackPanel>
+          <DataGrid x:Name="PresetsGrid" Grid.Row="1" Height="180" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" CellEditEnding="OnPresetCellEditEnding"
+                    Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextBrush}" RowBackground="{DynamicResource SurfaceBrush}" AlternatingRowBackground="{DynamicResource ChromeBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{DynamicResource DividerBrush}" HeadersVisibility="Column" RowHeight="40">
+            <DataGrid.Columns>
+              <DataGridCheckBoxColumn ElementStyle="{StaticResource GridCheckBox}" EditingElementStyle="{StaticResource GridCheckBox}" Header="启用" Binding="{Binding Enabled, UpdateSourceTrigger=PropertyChanged}" Width="56"/>
+              <DataGridTextColumn Header="名称" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+              <DataGridTextColumn Header="路径" Binding="{Binding Path, UpdateSourceTrigger=PropertyChanged}" Width="*" MinWidth="120"/>
+              <DataGridTextColumn Header="路径状态" Binding="{Binding PathStatus}" IsReadOnly="True" Width="100"/>
+            </DataGrid.Columns>
+          </DataGrid>
+          <WrapPanel Grid.Row="2" DataContext="{Binding SelectedItem, ElementName=PresetsGrid}" Margin="0,8,0,0"><CheckBox Content="复制成功后前进" IsChecked="{Binding CopyAdvance, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0"/><CheckBox Content="移动成功后前进" IsChecked="{Binding MoveAdvance, UpdateSourceTrigger=PropertyChanged}"/></WrapPanel>
+          <StackPanel Grid.Row="3">
+            <WrapPanel Margin="0,8,0,0"><Button Content="添加" Click="OnAddPresetClick"/><Button Content="移除" Click="OnRemovePresetClick"/><Button Content="上移" Click="OnMovePresetUpClick"/><Button Content="下移" Click="OnMovePresetDownClick"/><Button Content="选择文件夹" Click="OnChoosePresetFolderClick"/><Button Content="检查路径" Click="OnCheckPresetPathClick" ToolTip="只读检查目录是否存在，不保证可写、空间充足或没有同名冲突；实际整理仍需通过安全检查。"/><Button Content="创建目录" Click="OnCreatePresetFolderClick"/><Button Content="编辑此预设绑定" Click="OnEditPresetBindings"/></WrapPanel>
+            <WrapPanel Margin="0,8,0,0"><Button x:Name="OpenRecoveryButton" Content="恢复记录" Click="OnOpenRecoveryClick"/><TextBlock Text="撤销仅限本次会话最近100项；恢复副本不会自动清理。" Style="{StaticResource SecondaryText}" VerticalAlignment="Center" Margin="8,0"/></WrapPanel>
+          </StackPanel>
+        </Grid></ScrollViewer>
+      </TabItem>
+      <TabItem x:Name="DefaultAppsTab" Header="默认应用" Style="{StaticResource SettingsNavigation}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+          <TextBlock Text="默认应用" Style="{StaticResource PageTitle}"/>
+          <TextBlock Text="支持 JPG、JPEG、PNG、BMP、WebP。默认应用由你在 Windows 中选择。" Style="{StaticResource SecondaryText}" Margin="0,0,0,24"/>
+          <TextBlock x:Name="RegistrationStatusText" Text="尚未检查安装和默认应用状态。" TextWrapping="Wrap" Margin="0,0,0,16"/>
+          <WrapPanel><Button x:Name="OpenDefaultsButton" Content="打开 Windows 默认应用设置" Click="OnOpenDefaults"/><Button x:Name="RepairRegistrationButton" Content="修复 InfinityView 注册" IsEnabled="False" Click="OnRepairRegistration"/><Button Content="重新检查" Click="OnRefreshRegistration"/></WrapPanel>
+        </StackPanel></ScrollViewer>
+      </TabItem>
+      <TabItem x:Name="BackupTab" Header="备份与关于" Style="{StaticResource SettingsNavigation}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+          <TextBlock Text="备份与关于" Style="{StaticResource PageTitle}"/>
+          <StackPanel Orientation="Horizontal" Margin="0,0,0,24"><Image Source="/InfinityView;component/Assets/InfinityView-48.png" Width="48" Height="48"/><StackPanel Margin="16,0,0,0"><TextBlock Text="InfinityView" FontSize="22"/><TextBlock x:Name="VersionText" Style="{StaticResource SecondaryText}"/></StackPanel></StackPanel>
+          <CheckBox x:Name="IncludePathsCheck" Content="配置备份包含本机文件夹路径" IsChecked="True"/>
+          <WrapPanel Margin="0,8,0,8"><Button x:Name="ExportSettingsButton" Content="导出已应用配置" Click="OnExportSettings"/><Button x:Name="ImportSettingsButton" Content="导入配置" Click="OnImportSettings"/></WrapPanel>
+          <TextBlock Text="备份仅包含本版支持的配置组，不包含照片、日志、系统注册或其他版本的扩展字段。" Style="{StaticResource SecondaryText}" Margin="0,0,0,24"/>
+          <TextBlock Text="配置目录" Foreground="{DynamicResource SecondaryBrush}"/><TextBlock x:Name="ConfigDirectoryText" TextWrapping="Wrap" Margin="0,6,0,12"/>
+          <TextBlock Text="文件操作日志" Foreground="{DynamicResource SecondaryBrush}"/><TextBlock x:Name="LogDirectoryText" TextWrapping="Wrap" Margin="0,6,0,12"/>
+          <Button Content="打开配置目录" Click="OnOpenConfigDirectory" HorizontalAlignment="Left"/>
+          <TextBlock Text="个人自用版本。第三方许可随发行包提供。" Style="{StaticResource SecondaryText}" Margin="0,16,0,0"/>
+        </StackPanel></ScrollViewer>
+      </TabItem>
+    </TabControl>
+    <Border Grid.Row="1" Background="{DynamicResource ChromeBrush}" Padding="16,12">
+      <DockPanel LastChildFill="True"><StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button x:Name="ResetPageButton" Content="恢复本页默认" Click="OnResetPageClick"/><Button x:Name="CloseButton" Content="关闭" Click="OnCloseClick"/><Button x:Name="ApplyButton" Content="应用并保存" Click="OnApplyClick"/></StackPanel><TextBlock x:Name="Message" Foreground="{DynamicResource WarningBrush}" TextWrapping="Wrap" Margin="0,4,16,0" VerticalAlignment="Center"/></DockPanel>
+    </Border>
+  </Grid>
+</Window>
