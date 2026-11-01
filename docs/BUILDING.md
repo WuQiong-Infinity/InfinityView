@@ -33,9 +33,9 @@ pwsh -File native/lcms2/build.ps1
 pwsh -File native/libwebp/build.ps1
 ```
 
-来源与版本见各目录 `source.json`，完整许可见 `LICENSE` / `COPYING` / `PATENTS`。编译回执只在本地生成。
+来源与版本见各目录 `source.json`，完整许可见 `LICENSE` / `COPYING` / `PATENTS`。
 
-## 定向测试
+## 测试
 
 ```powershell
 pwsh -File scripts/Build-Source.ps1 -IncludeTests
@@ -46,7 +46,9 @@ pwsh -File scripts/Build-Source.ps1 -IncludeTests
 
 ## 便携副本
 
-把应用输出目录整体复制到一个可写的新目录，创建名为 `portable` 的空文件。程序使用旁置 `UserData`。不要只复制EXE，也不要把便携标记加到日常安装目录。分发时保留根MIT许可、`LICENSE-BRANDING.md`，以及实际依赖的完整许可证和第三方声明；所需文件的位置见 `THIRD_PARTY_NOTICES.md`。代码按MIT开源，图标单独保留权利；分发修改版时需换用其他有权使用的图标或另行取得许可。
+把应用输出目录完整复制到一个可写的新目录，创建名为 `portable` 的空文件。程序使用旁置 `UserData` 保存数据。
+
+分发时保留根 MIT 许可、`LICENSE-BRANDING.md`，以及实际依赖的完整许可证和第三方声明；所需文件的位置见 `THIRD_PARTY_NOTICES.md`。代码按 MIT 开源，图标按独立许可使用。
 
 ## 安装器
 

@@ -6,7 +6,6 @@
 
 - 安装版：运行 `InfinityView-1.0.0-win-x64-setup.exe`，选择安装目录。安装前关闭程序窗口，设置与整理预设会保留。
 - 便携版：完整解压 `InfinityView-1.0.0-win-x64-portable.zip`，运行其中的 `InfinityView.exe`。
-- GitHub 的 Source code 压缩包用于源码构建，日常使用请选择程序包。
 
 ## 数据与设置
 

@@ -6,13 +6,13 @@
 
 ## 下载
 
-普通用户无需编译，直接下载 Windows 11 x64 程序：
+下载 Windows 11 x64 程序：
 
 - **[下载安装版](https://github.com/WuQiong-Infinity/InfinityView/releases/download/v1.0.0/InfinityView-1.0.0-win-x64-setup.exe)**：双击安装，安装前先关闭程序窗口。
 - **[下载免安装 ZIP](https://github.com/WuQiong-Infinity/InfinityView/releases/download/v1.0.0/InfinityView-1.0.0-win-x64-portable.zip)**：完整解压，运行其中的 `InfinityView.exe`。
 - [发行页面、使用说明和校验值](https://github.com/WuQiong-Infinity/InfinityView/releases/tag/v1.0.0)
 
-当前为**预发行版（Pre-release）**。GitHub的“Source code”压缩包是源码，普通使用请选上面的程序包。运行时使用Windows自带.NET Framework 4.8，无需另装.NET10运行时。
+运行时使用 Windows 自带的 .NET Framework 4.8。
 
 ## 功能
 
@@ -34,7 +34,7 @@ pwsh -File scripts/Build-Source.ps1
 & ./src/v0.4/LightView.App/bin/InfinityView/Release/net48/InfinityView.exe
 ```
 
-原生 x64 依赖 DLL 随源码附带，对应源码、编译脚本和许可证也包含在仓库中。原生库重建、定向测试与安装器说明见 [构建文档](docs/BUILDING.md)。
+原生 x64 依赖 DLL、对应源码、编译脚本和许可证均包含在仓库中。原生库重建、测试与安装器说明见 [构建文档](docs/BUILDING.md)。
 
 ## 默认操作
 
@@ -55,7 +55,7 @@ pwsh -File scripts/Build-Source.ps1
 ## 项目布局
 
 - `src/v0.4/`：应用程序和核心逻辑。
-- `tests/v0.4/`：自带可执行测试工具，不是 `dotnet test` 测试项目。
+- `tests/v0.4/`：可执行测试工具。
 - `native/`：Little CMS、libwebp 原生依赖源码、许可及编译脚本。
 - `installer/`：Inno Setup 安装器集成与翻译许可。
 - `docs/`：公开构建、使用说明与图标。
