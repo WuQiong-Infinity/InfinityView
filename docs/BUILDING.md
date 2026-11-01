@@ -1,57 +1,57 @@
-# ��Դ�빹�� InfinityView
+# 从源码构建 InfinityView
 
-## ����
+## 环境
 
-- Windows 11 x64������ʱʹ��ϵͳ .NET Framework 4.8 ����߰汾��
-- ��װ `global.json` ָ���� .NET SDK����ǰ10.0.402������ͬ���Դ����²�������
-- �Ƽ� PowerShell 7�����������ļ��̶���NuGetԴΪ����nuget.org��
+- Windows 11 x64；运行时使用系统 .NET Framework 4.8 或更高版本。
+- 安装 `global.json` 指定的 .NET SDK（当前10.0.402，允许同特性带最新补丁）。
+- 推荐 PowerShell 7。依赖由锁文件固定，NuGet源为公开nuget.org。
 
-## �й�Ӧ��
+## 托管应用
 
-�ڲֿ��Ŀ¼���У�
+在仓库根目录运行：
 
 ```powershell
 pwsh -File scripts/Build-Source.ps1
 & ./src/v0.4/LightView.App/bin/InfinityView/Release/net48/InfinityView.exe
 ```
 
-�ȼ��ֶ����
+等价手动命令：
 
 ```powershell
 dotnet restore src/v0.4/LightView.App/LightView.App.csproj --locked-mode --configfile NuGet.config
 dotnet build src/v0.4/LightView.App/LightView.App.csproj -c Release --no-restore
 ```
 
-�ֿ��������ԭ��x64 DLL���Լ���ӦԴ�������֤��
+仓库包含两个原生x64 DLL，以及对应源码和许可证。
 
-## �ؽ�ԭ���⣨��ѡ��
+## 重建原生库（可选）
 
-ʹ��x86_64 MinGW-w64 GCC����gcc��objdump����Ŀ¼����PATH��
+使用x86_64 MinGW-w64 GCC，将gcc与objdump所在目录加入PATH：
 
 ```powershell
 pwsh -File native/lcms2/build.ps1
 pwsh -File native/libwebp/build.ps1
 ```
 
-��Դ��汾����Ŀ¼ `source.json`���������ɼ� `LICENSE` / `COPYING` / `PATENTS`�������ִֻ�ڱ������ɡ�
+来源与版本见各目录 `source.json`，完整许可见 `LICENSE` / `COPYING` / `PATENTS`。编译回执只在本地生成。
 
-## �������
+## 定向测试
 
 ```powershell
 pwsh -File scripts/Build-Source.ps1 -IncludeTests
 & ./tests/v0.4/bin/Release/net48/LightView.Tests.exe --infinity-v1 ./work/source-check "InfinityView data paths"
 ```
 
-����ͨ����ִ�й������У�ʹ����ں� filter ѡ������������ɫ�ʲ�����׼���ⲿICC�оߡ��ļ�����������ʹ�ø���Ŀ¼���˹�������
+测试通过可执行工具运行，使用入口和 filter 选择用例。部分色彩测试需准备外部ICC夹具。文件操作测试请使用隔离目录和人工样本。
 
-## ��Я����
+## 便携副本
 
-��Ӧ�����Ŀ¼���帴�Ƶ�һ����д����Ŀ¼��������Ϊ `portable` �Ŀ��ļ�������ʹ������ `UserData`����Ҫֻ����EXE��Ҳ��Ҫ�ѱ�Я��Ǽӵ��ճ���װĿ¼���ַ�ʱ������MIT���ɡ�`LICENSE-BRANDING.md`���Լ�ʵ����������������֤�͵����������������ļ���λ�ü� `THIRD_PARTY_NOTICES.md`�����밴MIT��Դ��ͼ�굥������Ȩ�����ַ��޸İ�ʱ�軻��������Ȩʹ�õ�ͼ�������ȡ�����ɡ�
+把应用输出目录整体复制到一个可写的新目录，创建名为 `portable` 的空文件。程序使用旁置 `UserData`。不要只复制EXE，也不要把便携标记加到日常安装目录。分发时保留根MIT许可、`LICENSE-BRANDING.md`，以及实际依赖的完整许可证和第三方声明；所需文件的位置见 `THIRD_PARTY_NOTICES.md`。代码按MIT开源，图标单独保留权利；分发修改版时需换用其他有权使用的图标或另行取得许可。
 
-## ��װ��
+## 安装器
 
-`installer/InfinityView-v1.iss` ʹ��Inno Setup6.7.3������ʱ���ṩ�����غɡ��汾����װ���ݡ������嵥�����������롣
+`installer/InfinityView-v1.iss` 使用Inno Setup6.7.3，编译时需提供完整载荷、版本、安装身份、归属清单和完整性输入。
 
-## ����Ŀ¼
+## 数据目录
 
-��װ��ʹ�� `%LOCALAPPDATA%/InfinityView`����Я��ʹ������ `UserData`������ `INFINITYVIEW_DATA_DIR` ָ����������Ŀ¼��
+安装版使用 `%LOCALAPPDATA%/InfinityView`，便携版使用旁置 `UserData`。可用 `INFINITYVIEW_DATA_DIR` 指定独立数据目录。
